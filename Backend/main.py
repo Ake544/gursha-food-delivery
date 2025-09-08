@@ -19,14 +19,16 @@ from google.auth.transport.requests import Request  as GoogleRequest
 from decimal import Decimal
 from datetime import datetime  
 from typing import Optional, List
+from google.oauth2 import service_account
+
+
+SERVICE_ACCOUNT_FILE = "/etc/secrets/service_account.json"
 
 def get_access_token():
     creds = service_account.Credentials.from_service_account_file(
-        r"C:\Users\ake\Desktop\Gursha FoodDelivery\Backend\gursha-chatbot-for-food-d-cfum-2775a3f78942.json",
+        SERVICE_ACCOUNT_FILE,
         scopes=["https://www.googleapis.com/auth/cloud-platform"]
     )
-    google_req = GoogleRequest()  # this is now google's Request
-    creds.refresh(google_req)
     return creds.token
 
 router = APIRouter()
