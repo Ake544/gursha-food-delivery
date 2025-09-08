@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from passlib.context import CryptContext
 import base64
 import json
+import mysql.connector
 
 
 #oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -26,15 +27,14 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 GOOGLE_REDIRECT_URI = "http://localhost:8000/auth/google/callback"
 
-# Database connection (same as before)
-import mysql.connector
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="your_password",
-        database="gursha_db"
-    )
+        host=os.getenv('MYSQLHOST'),
+        user=os.getenv('MYSQLUSER'),
+        password=os.getenv('MYSQLPASSWORD'),
+        database=os.getenv('MYSQLDATABASE'),
+        port=os.getenv('MYSQLPORT')
+)
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 SECRET_KEY = "secret"
