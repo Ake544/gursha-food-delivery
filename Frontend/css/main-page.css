@@ -1,0 +1,578 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.nav-links a.active {
+  color: orange;
+  border-bottom: 2px solid orange;
+  font-weight: bold;
+}
+
+.top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  background: orange;
+  color: white;
+  font-size: 0.9rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px; /* add space so text doesn’t clash with close button */
+  box-sizing: border-box;
+}
+
+.banner-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.close-banner {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+body.banner-hidden .top-banner {
+  height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+body.without-banner .top-banner {
+  height: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.close-banner {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+header {
+  position: fixed;
+  top: 32px;
+  left: 0;
+  width: 100%;
+  background: white;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: top 0.3s ease; /* smooth transition */
+}
+
+body.without-banner header {
+  top: 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #ffa500;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffa500;
+}
+
+.auth-buttons {
+  margin-left: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.sign-in,
+.sign-up {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid #ffa500;
+  color: #ffa500;
+  transition: all 0.3s ease;
+}
+
+.sign-up {
+  background-color: #ffa500;
+  color: #fff;
+}
+/* Style for the Admin button */
+.auth-buttons .admin-btn {
+  padding: 8px 16px;
+  background-color: #ffa500; /* Orange/Yellow color (adjust as needed) */
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.auth-buttons .admin-btn:hover {
+  background-color: #ec971f; /* Darker shade on hover */
+}
+
+.sign-in:hover,
+.sign-up:hover {
+  background-color: #ff8800;
+  border-color: #ff8800;
+  color: #fff;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 5%;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+  margin-bottom: 20px;
+}
+
+.hero-text h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #ffa500;
+  font-weight: 700;
+}
+
+.hero-text p {
+  max-width: 500px;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.cta-button {
+  background-color: #ffa500;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #ff8800;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+  }
+}
+
+body.without-banner header {
+  top: 0;
+}
+
+main.hero {
+  margin-top: 132px;
+  transition: margin-top 0.3s ease;
+}
+
+body.without-banner main.hero {
+  margin-top: 100px; /* adjust based on your header height */
+}
+
+/* Container holding recipes and chatbot */
+.second-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+
+  /* Chatbot Section - fixed to bottom right */
+.chatbot {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  flex-direction: column;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Animation states */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.chatbot.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  height: 430px; /* Adjust height when active */
+}
+
+.chat-body {
+  flex: 1;
+  padding: 1rem;
+
+  background: white;
+  overflow-y: auto;
+}
+
+.icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.chat-header {
+  background: orange;
+  padding: 1rem;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
+  text-align: left;
+}
+
+
+.bot-hint {
+  color: orange;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.chat-input {
+  display: flex;
+  border-style: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+ 
+  font-size: 1rem;
+  border-top: 1px solid #ddd;
+  border-bottom-left-radius: 10px;
+  border-width: 0;
+}
+
+.chat-input button {
+  padding: 0 1rem;
+  background: orange;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: shake 2s infinite ease-in-out;
+}
+
+#chatbotToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: orange;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  animation: shake 2s infinite;
+}
+
+#chatbotToggle .icon-img {
+  width: 33px;     /* or 36px, or whatever size you like */
+  height: 33px;
+}
+
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .second-page {
+    flex-direction: column;
+  }
+
+  .chatbot {
+    position: static;
+    width: 100%;
+    margin-top: 2rem;
+    height: auto;
+  }
+}
+
+/* User Profile Section */
+#userProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  margin-left: auto; /* Push it to the right side */
+  background-color: transparent;
+  box-shadow: none;
+  position: static; /* Remove floating behavior */
+}
+
+#userProfile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+#userName {
+  font-weight: 500;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #333;
+  white-space: nowrap;
+  
+}
+
+#userProfile a {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #6a1b9a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#userProfile a:hover {
+  text-decoration: underline;
+}
+
+.profile-dropdown {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  z-index: 1000;
+  padding: 8px 0;
+}
+.dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.dropdown-content a:hover {
+  background: #f8f8f8;
+  color: #ffa500;
+  text-decoration: none;
+}
+
+/* Show dropdown when profile is hovered */
+#userProfile:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active state for profile */
+#userProfile:hover .profile-icon {
+  border-color: #ffa500;
+}
+
+.telegram_link {
+  color: white;
+  font-style: normal;
+  text-decoration: none;
+}
+
+/* Cart Icon */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    left: 7px;
+    background: #ff4757;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: none;
+}
+
+/* Cart Notification */
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-notification button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+}

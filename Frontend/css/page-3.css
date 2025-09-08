@@ -1,0 +1,236 @@
+/* Third Page Layout */
+/*.page-three-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 2rem;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}*/
+
+.page-three-wrapper {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+
+/*.page-three-recipes-section {
+  flex: 1;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+}*/
+
+.page-three-title {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-three-country-selector {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#pageThreeCountryBtn {
+  padding: 10px 20px;
+  max-width: 200px;
+  font-size: 1rem;
+  border: 1px solid orange;
+  background-color: white;
+  color: orange;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.page-three-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 200px;
+}
+
+.page-three-dropdown div {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.page-three-dropdown div:hover {
+  background: #fdb75e;
+  color: white;
+}
+
+.page-three-dropdown.hidden {
+  display: none;
+}
+
+/* Grid and Card Styles */
+.page-three-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+}
+
+.page-three-card {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  max-height: 220px;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+
+}
+
+.page-three-card:hover {
+  transform: translateY(-5px);
+}
+
+.page-three-card img {
+  width: 100%;
+  height: 100%;
+  height: 90px;
+  object-fit: cover;
+}
+
+.page-three-price-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: orange;
+  color: white;
+  padding: 8px 12px;
+  font-weight: bold;
+  border-bottom-right-radius: 12px;
+  
+  z-index: 2;
+}
+
+.page-three-info {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 4px;
+  flex-grow: 1;
+  font-size: 0.45rem;
+}
+
+.page-three-info-content h3 {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.page-three-divider {
+  border: none;
+  border-top: 2px solid #222;
+  margin: 8px 0;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-three-info-wrapper {
+  background: white;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-top: 5px solid white;
+  position: relative;
+}
+
+.page-three-info h3 {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.page-three-info p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+
+.page-three-info button {
+  margin-top: auto;
+  padding: 8px 14px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.page-three-info button:hover {
+  background-color: #fca311;
+}
+
+.page-three-metrics {
+  display: flex;
+  justify-content: center;
+  font-size: 0.75rem; 
+  gap: 10px;
+  white-space: nowrap; 
+}
+.page-three-metrics span {
+  margin: 0; 
+}
+
+.page-three-order-btn {
+  margin: 10px auto 0;
+  background-color: orange;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.page-three-order-btn:hover {
+  background-color: #fca311;
+}
+
+@media (max-width: 768px) {
+  .page-three-recipes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+  grid-column: 1 / -1;
+}
+
+.no-recipes {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #999;
+  grid-column: 1 / -1;
+}

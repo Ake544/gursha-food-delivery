@@ -1,0 +1,99 @@
+/* Testimonials Section */
+.testimonials-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #fff8f0;
+}
+
+.testimonials-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.testimonial-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.testimonial-card h4 {
+  font-weight: bold;
+  color: #ffa500;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  background: #ffa500;
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+}
+
+.newsletter-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.newsletter-section p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  width: 250px;
+}
+
+.newsletter-form button {
+  padding: 10px 20px;
+  background: white;
+  color: #ffa500;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.newsletter-form button:hover {
+  background: #fff1d6;
+}
+
+/* Chatbot toggle when overlapping orange background */
+#chatbotToggle.chatbot-on-orange {
+  background: white;
+}
+
+#chatbotToggle.chatbot-on-orange .icon-img {
+    width: 33px;
+    height: 33px;
+    filter: brightness(1); /* make sure it's not dimmed */
+}

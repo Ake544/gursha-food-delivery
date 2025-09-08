@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--python -m http.server 8001 || http://localhost:8001-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gursha - Fast Food Delivery</title>
+  <link rel="icon" type="image/png" href="./images/logos/g-icon.png">
+  <link rel="stylesheet" href="css/main-page.css">
+  <link rel="stylesheet" href="css/chat-bot.css"/>
+  <link rel="stylesheet" href="css/page-2.css"/>
+  <link rel="stylesheet" href="css/page-3.css"/>
+  <link rel="stylesheet" href="css/page-4.css"/>
+</head>
+<body>
+  <div class="top-banner">
+    <div class="banner-content">
+      <span>Now you can order lightning-fast through our Telegram bot <strong><a target=“_blank” class="telegram_link" href="https://t.me/gursha_chatbot">@GurshChatBot</a></strong> — simple, quick, and hassle-free!</span>
+      <button class="close-banner">✖</button>
+    </div>
+  </div> 
+
+  <header>
+    <div class="logo">🍴<span>G</span>ursha.</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#Home">Home</a></li>
+        <li><a href="#Popular">Popular</a></li>
+        <li><a href="#Recipes">Recipes</a></li>
+        <li><a href="#Contact_Us">Contact Us</a></li>
+      </ul>
+      <div class="auth-section">
+        <!-- Auth Buttons (shown when logged out) -->
+        <div id="authButtons" class="auth-buttons">
+          <a href="static/login.html" class="sign-in">Sign In</a>
+          <a href="static/signup.html" class="sign-up">Sign Up</a>
+          <a href="static/admin_login.html" class="admin-btn">Admin</a>
+        </div>
+        
+        <!-- User Profile (shown when logged in) -->
+        <div id="userProfile" class="user-profile" style="display: none;">
+          <div class="profile-dropdown">
+            <span id="userName"></span>
+            <img src="images/logos/user-icon.png" alt="Profile" class="profile-icon">
+            <div class="dropdown-content">
+              <a href="static/orders.html">My Orders</a>
+              <a href="#" id="logoutBtn">Logout</a>
+            </div>
+          </div>
+        </div>
+        <div id="authLoadingSpinner" style="display: none; padding: 10px; font-weight: 500;">Loading...</div>
+      </div>
+      <div class="header-actions">
+            <div class="cart-icon" onclick="window.cartSystem.proceedToChatbotCheckout()">
+                <img src="./images/logos/shopping-cart.png" class="cart"> <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+  </header>
+
+  <main class="hero" id="Home">
+    <div class="hero-text">
+      <h1>Best Taste,<br><span class="highlight">Fastest</span> Pace!</h1>
+      <p>Craving something delicious? Get the best meals in town delivered at lightning speed!
+        Chat with our AI assistant to order, track, or customize your food—no waiting, no hassle.
+        Fast, fresh, and just a click away!
+      </p>
+      <a href="#Recipes" class="cta-button">Get Started</a>
+    </div>
+    <div class="hero-image">
+      <img src="images/logos/chef.jpg" alt="Chef giving thumbs up" />
+    </div>
+  </main>
+
+<!--Second Page-->
+
+  <section class="second-page" id="Popular">
+    <div class="recipes-section">
+      <div class="carousel-header">
+        <h2>Newest Recipes</h2>
+        <div class="carousel-nav">
+          <button class="carousel-prev" data-carousel="newest-carousel">❮</button>
+          <button class="carousel-next" data-carousel="newest-carousel">❯</button>
+        </div>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-scroll" id="newest-carousel">
+          <div class="carousel-track" id="newest-track">
+            <div class="loading-spinner">Loading newest recipes...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-header">
+        <h2>Hot Right Now</h2>
+        <div class="carousel-nav">
+          <button class="carousel-prev" data-carousel="hot-carousel">❮</button>
+          <button class="carousel-next" data-carousel="hot-carousel">❯</button>
+        </div>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-scroll" id="hot-carousel">
+          <div class="carousel-track" id="hot-track">
+            <div class="loading-spinner">Loading popular recipes...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="chatbotToggle" class="chatbot-toggle">
+      <img id="chatbotIcon" src="images/logos/chatbot.png" alt="Chat" class="icon-img">
+    </button>
+  
+      <!-- Add more recipe-card blocks as needed -->
+    <aside class="chatbot" id="chatbot">
+      <div class="chat-header">
+        <span>🤖 Gursha ChatBot</span>
+      </div>
+      <div class="chat-body">
+        <!-- Messages will appear here -->
+        <div class="chat-message">
+          <p>Hi there! How can I assist you today?</p>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Say hi..." />
+        <button><img src="images/logos/send.png" alt="Send" class="icon-img"></button>
+      </div>
+    </aside>
+  </section>
+ 
+<!--Third Page-->
+<section class="page-three-wrapper" id="Recipes">
+  <div class="page-three-recipes-section">
+    <div class="page-three-country-selector">
+      <button id="pageThreeCountryBtn">America</button>
+      <div class="page-three-dropdown hidden">
+        <div>America</div>
+        <div>Ethiopia</div>
+        <div>Korea</div>
+        <div>India</div>
+        <div>Mexico</div>
+      </div>
+    </div>
+    <div class="page-three-recipes-grid"></div>
+  </div>
+</section>
+
+<!--Fourth Page-->
+<section class="testimonials-section" id="Contact_Us">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p>“Absolutely delicious and super fast delivery!”</p>
+      <h4>- Hanna T.</h4>
+    </div>
+    <div class="testimonial-card">
+      <p>“Gursha never disappoints. Top-notch customer service.”</p>
+      <h4>- Mulugeta A.</h4>
+    </div>
+    <div class="testimonial-card">
+      <p>“Love the variety of international flavors.”</p>
+      <h4>- Sara G.</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="newsletter-section">
+  <h2>Stay Updated</h2>
+  <p>Subscribe to our newsletter and get the latest deals and recipes!</p>
+  <form class="newsletter-form">
+    <input type="email" placeholder="Enter your email..." required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+
+  <script src="js/main.js"></script>
+  <script src="js/nav_button.js"></script>
+  <script src="js/page-3.js"></script>
+  <script src="js/page-4.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/chatbot.js"></script>
+  <!--<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>-->
+</body>
+</html>
+
+<!--chmod +x run_all.sh-->
