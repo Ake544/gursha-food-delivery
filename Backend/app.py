@@ -18,7 +18,8 @@ origins = [
         "http://205.169.39.21",  
         "http://205.169.39.21:8000",  
         "http://0.0.0.0",  
-        "http://0.0.0.0:8000" 
+        "http://0.0.0.0:8000",
+        "https://gursha-food-delivery.onrender.com"
 ]
 
 app.add_middleware(
