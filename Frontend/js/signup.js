@@ -1,6 +1,6 @@
 // Handle Google credential response
 async function handleCredentialResponse(response) {
-  const API_BASE = "http://localhost:8000";
+  const API_BASE = "https://gursha-food-delivery.onrender.com";
   try {
     const credential = response.credential; // Google ID token
 

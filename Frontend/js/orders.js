@@ -6,6 +6,7 @@ async function loadOrders() {
     
     const container = document.getElementById('orders-container');
     const userId = localStorage.getItem('user_id');
+    const API_BASE = "https://gursha-food-delivery.onrender.com";
     
     if (!userId) {
         container.innerHTML = '<div class="error">Please login to view orders</div>';
@@ -15,7 +16,7 @@ async function loadOrders() {
     try {
         // ✅ SIMPLIFIED: No headers to avoid OPTIONS preflight issues
         const timestamp = new Date().getTime();
-        const url = `http://localhost:8000/my-orders/${userId}?t=${timestamp}`;
+        const url = `${API_BASE}/my-orders/${userId}?t=${timestamp}`;
         
         const response = await fetch(url);  // ← No headers = no OPTIONS preflight
         

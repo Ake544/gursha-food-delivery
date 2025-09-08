@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("orders-list");
   const revenueSpan = document.getElementById("total-revenue");
-  const API_BASE = "http://localhost:8000";
+  const API_BASE = "https://gursha-food-delivery.onrender.com";
 
   // Clear while loading
   container.innerHTML = '<div class="loading">Loading orders...</div>';

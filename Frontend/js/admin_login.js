@@ -14,7 +14,7 @@ document.getElementById("adminLoginForm").addEventListener("submit", async funct
   }
 
   try {
-    const API_BASE = "http://localhost:8000";
+    const API_BASE = "https://gursha-food-delivery.onrender.com";
     const response = await fetch(`${API_BASE}/auth/admin/login`, {
       method: "POST",
       headers: { 

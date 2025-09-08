@@ -3,7 +3,7 @@ document.getElementById('payment-form').addEventListener('submit', async (e) => 
     const payButton = document.getElementById('payButton');
     payButton.disabled = true;
     payButton.textContent = 'Processing...';
-    const API_BASE = "http://localhost:8000";
+    const API_BASE = "https://gursha-food-delivery.onrender.com";
 
     try {
         const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');

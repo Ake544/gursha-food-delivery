@@ -1,5 +1,5 @@
 // Define your API base URL at the top
-const API_BASE_URL = 'http://localhost:8000'; // Change this if your FastAPI runs on a different port
+const API_BASE_URL = 'https://gursha-food-delivery.onrender.com'; // Change this if your FastAPI runs on a different port
 
 // Function to get image path based on food name
 function getFoodImage(foodName, countryName) {

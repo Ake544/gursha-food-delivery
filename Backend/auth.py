@@ -25,7 +25,7 @@ router = APIRouter()
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-GOOGLE_REDIRECT_URI = "http://localhost:8000/auth/google/callback"
+GOOGLE_REDIRECT_URI = "https://gursha-food-delivery.onrender.com/auth/google/callback"
 
 def get_db():
     return mysql.connector.connect(

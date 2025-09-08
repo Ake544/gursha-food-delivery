@@ -4,7 +4,7 @@ const userProfile = document.getElementById('userProfile');
 const userName = document.getElementById('userName');
 const logoutBtn = document.getElementById('logoutBtn');
 const authLoadingSpinner = document.getElementById('authLoadingSpinner'); 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://gursha-food-delivery.onrender.com";
 
 // 1. Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {

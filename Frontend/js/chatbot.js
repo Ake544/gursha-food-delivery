@@ -87,7 +87,7 @@ async function onUserSend() {
   appendMessage("bot", "", true);
 
   try {
-    const tokenRes = await fetch("https://andale-disclaimer-hint-tradition.trycloudflare.com/token");
+    const tokenRes = await fetch("https://gursha-food-delivery.onrender.com/token");
     if (!tokenRes.ok) throw new Error("Failed to get token");
     const { access_token } = await tokenRes.json();
 

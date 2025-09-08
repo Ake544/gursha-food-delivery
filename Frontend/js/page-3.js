@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const countryBtn = document.getElementById("pageThreeCountryBtn");
   const dropdown = document.querySelector(".page-three-dropdown");
   const recipeGrid = document.querySelector(".page-three-recipes-grid");
-  const API_BASE = "http://localhost:8000";
+  const API_BASE = "https://gursha-food-delivery.onrender.com";
 
   // Map food names to image paths (you can expand this as needed)
   const foodImageMap = {
