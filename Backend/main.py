@@ -24,15 +24,7 @@ from google.oauth2 import service_account
 
 SERVICE_ACCOUNT_FILE = "/etc/secrets/service_account.json"
 
-def get_access_token():
-    creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
-        scopes=["https://www.googleapis.com/auth/cloud-platform"]
-    )
-    return creds.token
-
 router = APIRouter()
-
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 SECRET_KEY = "secret"
@@ -107,7 +99,13 @@ class VerifyPayment(BaseModel):
 
 @router.get("/token")
 def token():
-    return {"access_token": get_access_token()}
+    creds = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE,
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+
+    creds.refresh(requests())
+    return {"access_token": creds.token}
 
 # Modify the handle_request endpoint
 @router.post("/")
