@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 cnx = None 
 
@@ -6,11 +7,12 @@ def get_db_connection():
     global cnx
     if cnx is None or not cnx.is_connected():
         cnx = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="your_password",
-            database="gursha_db"
-        )
+        host=os.getenv('MYSQLHOST'),
+        user=os.getenv('MYSQLUSER'),
+        password=os.getenv('MYSQLPASSWORD'),
+        database=os.getenv('MYSQLDATABASE'),
+        port=os.getenv('MYSQLPORT')
+)
     return cnx
 
 def close_connection():
@@ -22,11 +24,12 @@ def close_connection():
 def get_order_status(order_id):
     # ✅ Create FRESH connection just for tracking (bypass cache)
     fresh_cnx = mysql.connector.connect(
-        host="localhost",
-        user="root", 
-        password="your_password",
-        database="gursha_db"
-    )
+        host=os.getenv('MYSQLHOST'),
+        user=os.getenv('MYSQLUSER'),
+        password=os.getenv('MYSQLPASSWORD'),
+        database=os.getenv('MYSQLDATABASE'),
+        port=os.getenv('MYSQLPORT')
+)
     
     cursor = fresh_cnx.cursor(buffered=True)
     query = "SELECT status FROM order_tracking WHERE order_id = %s"
