@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import uvicorn
 
 # Import the routers (not the apps)
 from main import router as main_router
@@ -35,13 +37,7 @@ app.include_router(main_router, tags=["Main"])
 def read_root():
     return {"message": "Welcome to Gursha API"}
 
-# Add this to your current app.py
-@app.get("/debug/test")
-def debug_test():
-    return {
-        "message": "Main app works",
-        "mounted_paths": [
-            {"path": "/auth", "app": "auth_app"},
-            {"path": "/", "app": "main_app"}
-        ]
-    }
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=True)
