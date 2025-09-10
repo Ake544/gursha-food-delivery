@@ -15,7 +15,7 @@ from google.oauth2 import service_account
 from google.auth.transport import requests
 from jose import jwt, JWTError
 from google.oauth2 import id_token as google_id_token
-from google.auth.transport.requests import Request  as GoogleRequest
+from google.auth.transport.requests import Request 
 from decimal import Decimal
 from datetime import datetime  
 from typing import Optional, List
@@ -104,7 +104,7 @@ def token():
         scopes=["https://www.googleapis.com/auth/cloud-platform"]
     )
 
-    creds.refresh(requests())
+    creds.refresh(Request())
     return {"access_token": creds.token}
 
 # Modify the handle_request endpoint
