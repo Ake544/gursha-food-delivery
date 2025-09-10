@@ -116,7 +116,7 @@ async def handle_request(request: FastAPIRequest):
     parameters = payload['queryResult']['parameters']
     output_context = payload['queryResult'].get('outputContexts', []) or []
 
-    #print(json.dumps(payload, indent=2))
+    print(json.dumps(payload, indent=2))
 
     if output_context:
         session_id = generic_helper.extract_session_id(output_context[0]['name'])
@@ -240,8 +240,9 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
             "fulfillmentText": "I'm having trouble finding your order. Please place a new order."
         })
 
+
     order = inprogress_orders[session_id]
-    order_id = save_to_db(order, user_id)
+    order_id = save_to_db(order, user_id)  
 
     try:
         connection = db_helper.get_db_connection()
@@ -268,36 +269,16 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
 
     order_total = db_helper.get_total_order_price(order_id)
     payment_url = f"https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}"
-
+    
     del inprogress_orders[session_id]
 
-    # ✅ Dialogflow-friendly response with button
     return JSONResponse(content={
-        "fulfillmentText": f"Order ID: #{order_id}\nTotal: {order_total} Birr\nPay here: {payment_url}",
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [
-                        f"Order ID: #{order_id}\nTotal: {order_total} Birr"
-                    ]
-                }
-            },
-            {
-                "payload": {
-                    "richContent": [
-                        [
-                            {
-                                "type": "button",
-                                "text": "Pay Now",
-                                "link": payment_url
-                            }
-                        ]
-                    ]
-                }
-            }
-        ]
+        "fulfillmentText": (
+            f"Order ID: #{order_id}\n"
+            f"Total: {order_total} Birr\n"
+            f"Please pay here: <a href='{payment_url}' target='_blank' style='color: #0066cc; text-decoration: underline;'>Click to Pay</a>\n"
+        )
     })
-
 
 def save_to_db(order: dict, user_id: str):
 

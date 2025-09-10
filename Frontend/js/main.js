@@ -1,3 +1,53 @@
+function autoScrollCarousel(containerId, interval = 4000) {
+  const carousel = document.getElementById(containerId);
+  const track = carousel.querySelector('.carousel-track');
+  const cards = track.children;
+  const visibleCards = 4;
+  const totalCards = cards.length;
+  let index = 0;
+
+  setInterval(() => {
+    index++;
+    if (index > totalCards - visibleCards) {
+      index = 0;
+    }
+
+    const scrollAmount = index * (100 / visibleCards);
+    track.style.transform = `translateX(-${scrollAmount}%)`;
+  }, interval);
+}
+
+autoScrollCarousel("newest-carousel");
+autoScrollCarousel("hot-carousel");
+
+const banner = document.querySelector('.top-banner');
+const heroSection = document.querySelector('.hero');
+const closeBtn = document.querySelector('.close-banner');
+
+let bannerClosed = false; // Track if manually closed
+
+closeBtn.addEventListener('click', () => {
+  bannerClosed = true;
+  banner.style.display = 'none';
+  document.body.classList.add('without-banner', 'banner-hidden');
+});
+
+// Single scroll listener
+window.addEventListener('scroll', () => {
+  if (bannerClosed) return; // Don't do anything if banner was closed manually
+
+  const scrollY = window.scrollY;
+  const heroHeight = heroSection.offsetHeight;
+
+  if (scrollY > heroHeight - 100) {
+    banner.style.display = 'none';
+    document.body.classList.add('without-banner', 'banner-hidden');
+  } else {
+    banner.style.display = 'block';
+    document.body.classList.remove('without-banner', 'banner-hidden');
+  }
+});
+
 // Define your API base URL at the top
 const API_BASE_URL = 'https://gursha-food-delivery.onrender.com'; // Change this if your FastAPI runs on a different port
 
