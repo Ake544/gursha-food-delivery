@@ -116,7 +116,6 @@ async def handle_request(request: FastAPIRequest):
     parameters = payload['queryResult']['parameters']
     output_context = payload['queryResult'].get('outputContexts', []) or []
 
-    print("Intent:", intent)
     if output_context:
         session_id = generic_helper.extract_session_id(output_context[0]['name'])
     else:
@@ -160,6 +159,7 @@ async def handle_request(request: FastAPIRequest):
         'track.order - context: ongoing-tracking': track_order
     }
 #Looking
+    print("extracted user_id:", user_id)
     if intent in intent_handler_dict:
         if intent == 'order.complete - context: ongoing-order':
             if user_id is None:
