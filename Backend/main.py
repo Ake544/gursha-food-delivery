@@ -270,6 +270,8 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
         })
 
     order_total = db_helper.get_total_order_price(order_id)
+    print(f"Order ID: {order_id}, Total Price: {order_total}")
+    print(inprogress_orders)
     payment_url = f"https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}"
     
     del inprogress_orders[session_id]
