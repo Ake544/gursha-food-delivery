@@ -128,6 +128,9 @@ async def handle_request(request: FastAPIRequest):
         'order.complete - context: ongoing-order',
     }
 
+    print("Session ID:", session_id)
+    print("Inprogress Orders:", inprogress_orders.keys())
+
     user_id = None
     if intent in protected_intents:
         # 1) FIRST: Try to get token from Dialogflow payload/context
@@ -193,6 +196,8 @@ def add_to_order(parameters: dict, session_id: str):
             inprogress_orders[session_id] = new_food_dict
 
         order_str = generic_helper.get_str_from_food_dict(inprogress_orders[session_id])
+        print("Session ID:", session_id)
+        print("Inprogress Orders:", inprogress_orders.keys())
         fulfillment_text = f"You have {order_str} in your order.Do you want to add more items or complete the order?"
 
     return JSONResponse(content={
@@ -265,7 +270,7 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
         })
 
     order_total = db_helper.get_total_order_price(order_id)
-    payment_url = f"http://localhost:8001/static/payment.html?session_id={session_id}"
+    payment_url = f"https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}"
     
     del inprogress_orders[session_id]
 
