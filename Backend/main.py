@@ -122,6 +122,8 @@ async def handle_request(request: FastAPIRequest):
         session_id = "unknown"
 
     # Intents that require login
+    print("➡️ Intent:", intent)
+    
     protected_intents = {
         'order.add - context: ongoing-order',
         'order.remove - context: ongoing-order',
