@@ -273,6 +273,7 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
 
     # ✅ Dialogflow-friendly response with button
     return JSONResponse(content={
+        "fulfillmentText": f"Order ID: #{order_id}\nTotal: {order_total} Birr\nPay here: {payment_url}",
         "fulfillmentMessages": [
             {
                 "text": {
@@ -296,6 +297,7 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
             }
         ]
     })
+
 
 def save_to_db(order: dict, user_id: str):
 
