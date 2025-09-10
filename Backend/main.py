@@ -116,6 +116,7 @@ async def handle_request(request: FastAPIRequest):
     parameters = payload['queryResult']['parameters']
     output_context = payload['queryResult'].get('outputContexts', []) or []
 
+    print("Intent:", intent)
     if output_context:
         session_id = generic_helper.extract_session_id(output_context[0]['name'])
     else:
