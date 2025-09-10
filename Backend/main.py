@@ -116,7 +116,7 @@ async def handle_request(request: FastAPIRequest):
     parameters = payload['queryResult']['parameters']
     output_context = payload['queryResult'].get('outputContexts', []) or []
 
-    print(json.dumps(payload, indent=2))
+    #print(json.dumps(payload, indent=2))
 
     if output_context:
         session_id = generic_helper.extract_session_id(output_context[0]['name'])
@@ -273,12 +273,9 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
     del inprogress_orders[session_id]
 
     return JSONResponse(content={
-    "fulfillmentText": (
-        f"Order ID: #{order_id}\n"
-        f"Total: {order_total} Birr\n"
-        f"Please pay here: {payment_url}"
-        )
+        "fulfillmentText": f"Order ID: #{order_id}. Total: {order_total} Birr. Pay here: {payment_url}"
     })
+
     #return JSONResponse(content={
         #"fulfillmentText": (
             #f"Order ID: #{order_id}\n"
