@@ -273,12 +273,19 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
     del inprogress_orders[session_id]
 
     return JSONResponse(content={
-        "fulfillmentText": (
-            f"Order ID: #{order_id}\n"
-            f"Total: {order_total} Birr\n"
-            f"Please pay here: <a href='{payment_url}' target='_blank' style='color: #0066cc; text-decoration: underline;'>Click to Pay</a>\n"
+    "fulfillmentText": (
+        f"Order ID: #{order_id}\n"
+        f"Total: {order_total} Birr\n"
+        f"Please pay here: {payment_url}"
         )
     })
+    #return JSONResponse(content={
+        #"fulfillmentText": (
+            #f"Order ID: #{order_id}\n"
+            #f"Total: {order_total} Birr\n"
+            #f"Please pay here: <a href='{payment_url}' target='_blank' style='color: #0066cc; text-decoration: underline;'>Click to Pay</a>\n"
+        #)
+    #})
 
 def save_to_db(order: dict, user_id: str):
 
