@@ -122,16 +122,11 @@ async def handle_request(request: FastAPIRequest):
         session_id = "unknown"
 
     # Intents that require login
-    print("➡️ Intent:", intent)
-    
     protected_intents = {
         'order.add - context: ongoing-order',
         'order.remove - context: ongoing-order',
         'order.complete - context: ongoing-order',
     }
-
-    print("Session ID:", session_id)
-    print("Inprogress Orders:", inprogress_orders.keys())
 
     user_id = None
     if intent in protected_intents:
@@ -198,8 +193,6 @@ def add_to_order(parameters: dict, session_id: str):
             inprogress_orders[session_id] = new_food_dict
 
         order_str = generic_helper.get_str_from_food_dict(inprogress_orders[session_id])
-        print("Session ID:", session_id)
-        print("Inprogress Orders:", inprogress_orders.keys())
         fulfillment_text = f"You have {order_str} in your order.Do you want to add more items or complete the order?"
 
     return JSONResponse(content={
@@ -272,8 +265,6 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
         })
 
     order_total = db_helper.get_total_order_price(order_id)
-    print(f"Order ID: {order_id}, Total Price: {order_total}")
-    print(inprogress_orders)
     payment_url = f"https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}"
     
     del inprogress_orders[session_id]
