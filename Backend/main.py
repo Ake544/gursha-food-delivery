@@ -107,6 +107,15 @@ def token():
     creds.refresh(Request())
     return {"access_token": creds.token}
 
+@router.get("/debug-test")
+async def debug_test():
+    return {
+        "status": "backend is working",
+        "secret_key_set": bool(SECRET_KEY != "secret"),
+        "service_account_exists": os.path.exists(SERVICE_ACCOUNT_FILE) if SERVICE_ACCOUNT_FILE else False,
+        "timestamp": datetime.now().isoformat()
+    }
+
 # Modify the handle_request endpoint
 @router.post("/")
 async def handle_request(request: FastAPIRequest):
