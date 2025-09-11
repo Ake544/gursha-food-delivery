@@ -1,6 +1,6 @@
 # 🍴 Gursha – NLP Food Ordering Chatbot
 
-**Live Demo:** [https://gursha-delivery.netlify.app](https://gursha-delivery.netlify.app/)  
+**Live Demo:** [https://gursha-delivery.netlify.app](https://gursha-delivery.netlify.app) or [https://gursha-food-delivery.vercel.app](https://gursha-food-delivery.vercel.app) 
 **GitHub Repo:** [https://github.com/Ake544/gursha-food-delivery](https://github.com/Ake544/gursha-food-delivery)  
 
 *A full-stack food ordering platform powered by NLP (Dialogflow) where users can place, manage, and track orders through natural conversation.*
