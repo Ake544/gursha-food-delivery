@@ -164,7 +164,6 @@ async def handle_request(request: FastAPIRequest):
         'track.order - context: ongoing-tracking': track_order
     }
 #Looking
-    print("extracted user_id:", user_id)
     if intent in intent_handler_dict:
         if intent == 'order.complete - context: ongoing-order':
             if user_id is None:
@@ -275,13 +274,13 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
     
     del inprogress_orders[session_id]
 
-    return JSONResponse(content={
-        "fulfillmentText": "Payment Done!"
-    })
+    return {
+            "fulfillmentText": f"Order completed successfully! 🎉\nOrder ID: #{order_id}\nTotal: {order_total} Birr\nPlease check your email for payment instructions."
+        }
     #return JSONResponse(content={
         #f"fulfillmentText": (f"Order ID: #{order_id}\n"
         #f"Total: {order_total} Birr\n"
-        #f"Please pay here: https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}")
+        #f"Please pay here: {payment_url}")
     #})
 
 def save_to_db(order: dict, user_id: str):
