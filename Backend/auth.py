@@ -37,8 +37,11 @@ def get_db():
 )
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-SECRET_KEY = "secret"
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_temp_key_but_warn")
 ALGORITHM = "HS256"
+
+if SECRET_KEY == "fallback_temp_key_but_warn":
+    print("⚠️  WARNING: Using fallback SECRET_KEY - this should not happen in production!")
 
 class AdminLogin(BaseModel):
     email: str

@@ -27,8 +27,11 @@ SERVICE_ACCOUNT_FILE = "/etc/secrets/service_account.json"
 router = APIRouter()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-SECRET_KEY = "secret"
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_temp_key_but_warn")
 ALGORITHM = "HS256"
+
+if SECRET_KEY == "fallback_temp_key_but_warn":
+    print("⚠️  WARNING: Using fallback SECRET_KEY - this should not happen in production!")
 
 inprogress_orders = {}
 
@@ -76,13 +79,19 @@ def get_jwt_header(token: str) -> dict:
 # Enhance your JWT decoding with better error handling
 def decode_internal_jwt(token: str):
     try:
+        print(f"🔐 Attempting to decode JWT with key: {SECRET_KEY[:5]}...{SECRET_KEY[-5:] if SECRET_KEY else 'None'}")
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        print(f"✅ JWT decoded successfully, user_id: {payload.get('user_id')}")
         return {"ok": True, "type": "internal", "user_id": payload.get("user_id"), "payload": payload}
     except jwt.ExpiredSignatureError:
+        print("❌ JWT Token expired")
         return {"ok": False, "error": "Token expired"}
     except jwt.JWTError as e:
+        print(f"❌ JWT Error: {str(e)}")
+        print(f"❌ Token: {token[:50]}...")
         return {"ok": False, "error": f"Invalid token: {str(e)}"}
     except Exception as e:
+        print(f"❌ Unexpected JWT error: {str(e)}")
         return {"ok": False, "error": f"Token decoding error: {str(e)}"}
 
 def decode_internal_user_id(token: str) -> str | None:
@@ -106,6 +115,31 @@ def token():
 
     creds.refresh(Request())
     return {"access_token": creds.token}
+
+@router.post("/debug-auth")
+async def debug_auth_test(request: FastAPIRequest):
+    """Test endpoint to debug authentication issues"""
+    payload = await request.json()
+    
+    print("🔍 Debug Auth - Full payload:")
+    print(json.dumps(payload, indent=2))
+    
+    # Test token extraction
+    token_from_payload = extract_auth_token_from_payload(payload)
+    auth_header = request.headers.get("Authorization")
+    token_from_header = extract_token_from_header(auth_header)
+    
+    result = {
+        "token_from_payload": bool(token_from_payload),
+        "token_from_header": bool(token_from_header),
+        "intent": payload.get('queryResult', {}).get('intent', {}).get('displayName', 'Unknown'),
+        "session_id": generic_helper.extract_session_id(payload.get('session', '')),
+        "secret_key_configured": SECRET_KEY != "secret" and bool(SECRET_KEY),
+        "secret_key_length": len(SECRET_KEY) if SECRET_KEY else 0
+    }
+    
+    print(f"🔍 Auth Debug Result: {result}")
+    return result
 
 @router.get("/debug-test")
 async def debug_test():
