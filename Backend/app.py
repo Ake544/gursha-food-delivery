@@ -20,12 +20,13 @@ origins = [
         "http://0.0.0.0",  
         "http://0.0.0.0:8000",
         "https://gursha-food-delivery.onrender.com",
-        "https://gursha-delivery.netlify.app"
+        "https://gursha-delivery.netlify.app",
+        "https://gursha-food-delivery.vercel.app"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=[origins], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
