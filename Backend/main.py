@@ -274,13 +274,13 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
     
     del inprogress_orders[session_id]
 
-    return {
-            "fulfillmentText": f"Order completed successfully! 🎉\nOrder ID: #{order_id}\nTotal: {order_total} Birr\nPlease check your email for payment instructions."
-        }
+    return JSONResponse(content={
+        "fulfillmentText": "Payment Done!"
+    })
     #return JSONResponse(content={
         #f"fulfillmentText": (f"Order ID: #{order_id}\n"
         #f"Total: {order_total} Birr\n"
-        #f"Please pay here: {payment_url}")
+        #f"Please pay here: {https://gursha-food-delivery.onrender.com/static/payment.html?session_id={session_id}}")
     #})
 
 def save_to_db(order: dict, user_id: str):
