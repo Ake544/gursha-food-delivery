@@ -244,7 +244,7 @@ def complete_order(parameters: dict, session_id: str, user_id: str):
 
 
     order = inprogress_orders[session_id]
-    order_id = save_to_db(order, user_id)  
+    #order_id = save_to_db(order, user_id)  
 
     try:
         connection = db_helper.get_db_connection()
